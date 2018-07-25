@@ -7,6 +7,7 @@ xenial:puppet5:
   stage: Puppet 5
   script:
   - ./test/install.sh
+  - sleep 3600
   - puppet apply -v ./test/site.pp
   - inspec exec ./test/inspec/sc_postgresql.rb
 
