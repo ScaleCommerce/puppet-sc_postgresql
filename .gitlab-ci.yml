@@ -1,0 +1,16 @@
+stages:
+  - Puppet 5
+  - push2github
+
+xenial:puppet5:
+  image: scalecommerce/xenial:1.8
+  stage: Puppet 5
+  script:
+  - ./test/install.sh
+  - puppet apply -v ./test/site.pp
+  - inspec exec ./test/inspec/sc_postgresql.rb
+
+push2github:
+  stage: push2github
+  script:
+    - git push --mirror https://$GITHUB_TOKEN@github.com/ScaleCommerce/puppet-sc_postgresql.git
