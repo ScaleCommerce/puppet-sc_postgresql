@@ -13,7 +13,6 @@ puppet config set certname puppet-test.scalecommerce
 
 # install puppet modules
 puppet module install puppetlabs-postgresql
-puppet module install yo61-logrotate
 git clone https://github.com/ScaleCommerce/puppet-supervisor_provider.git $(puppet config print modulepath |cut -d: -f1)/supervisor_provider
 https://github.com/ScaleCommerce/puppet-sc_bashprofile.git $(puppet config print modulepath |cut -d: -f1)/sc_bashprofile
 ln -sf $(pwd) $(puppet config print modulepath |cut -d: -f1)/sc_postgresql
