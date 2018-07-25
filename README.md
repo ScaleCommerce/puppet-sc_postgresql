@@ -35,11 +35,18 @@ Check out our solultion for Puppet-Hiera-Roles (https://github.com/ScaleCommerce
 
 ## Usage: Databases
 
-Put this into your node.yaml or role.yaml. See [Documentation of puppetlabs-postgresql](https://github.com/puppetlabs/puppetlabs-postgresql) for details on postgresql yaml syntax.
+Put this into your node.yaml or role.yaml. See [Documentation of puppetlabs-postgresql](https://github.com/puppetlabs/puppetlabs-postgresql) for details on params and syntax.
 ```
 ---
 classes:
   - sc_postgresql
+
+  sc_postgresql::databases:
+    shop:
+      user: spryker
+      owner: spryker
+      password: very_secret_password!!
+
 ```
 
 ## Testing

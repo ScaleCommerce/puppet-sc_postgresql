@@ -15,6 +15,7 @@ xenial:puppet5:
   - mv ./test/hieradata/override.yaml  ./test/hieradata/override.yaml.disabled
 
 push2github:
+  image: scalecommerce/xenial:1.8
   stage: push2github
   script:
     - git push --mirror https://$GITHUB_TOKEN@github.com/ScaleCommerce/puppet-sc_postgresql.git
