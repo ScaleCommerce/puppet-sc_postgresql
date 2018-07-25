@@ -27,6 +27,13 @@ class sc_postgresql (
   }
 
   include postgresql::server
+  include postgresql::repo
+  include sc_bashprofile
+
+  file{'/root/.pgpass':
+    content => "*:*:*:postgres:${postgresql::server::postgres_password}",
+    mode    => "0600",
+  }
 
   ensure_resources('postgresql::server::db', hiera_hash('sc_postgresql::databases', {}), hiera_hash('sc_postgresql::databases_defaults', {}))
 

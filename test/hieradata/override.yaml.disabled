@@ -1,0 +1,13 @@
+---
+classes:
+  - sc_postgresql
+
+sc_postgresql::databases:
+  my_new_db:
+    user: my_new_user
+    owner: my_new_user
+    password: also_very_new_secret!!
+  my_db:
+    user: my_override_user
+    owner: my_user
+    password: also_very_override_secret!!

@@ -10,6 +10,7 @@
     * [What sc_apache affects](#what-sc_postgresql-affects)
     * [Beginning with sc_apache](#beginning-with-sc_postgresql)
 4. [Usage - Configuration options and additional functionality](#usage)
+5. [Local Testing](#testing)
 
 ## Overview
 
@@ -40,3 +41,9 @@ Put this into your node.yaml or role.yaml. See [Documentation of puppetlabs-post
 classes:
   - sc_postgresql
 ```
+
+## Testing
+
+When making changes you can test this module locally with [gitlab-runner on Mac OSX](https://docs.gitlab.com/runner/install/osx.html)
+
+`gitlab-runner exec docker --env "GIT_STRATEGY=none" --docker-volumes `pwd`:/builds/project-0 xenial:puppet5`

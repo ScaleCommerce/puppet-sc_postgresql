@@ -7,9 +7,12 @@ xenial:puppet5:
   stage: Puppet 5
   script:
   - ./test/install.sh
-  - sleep 3600
   - puppet apply -v ./test/site.pp
   - inspec exec ./test/inspec/sc_postgresql.rb
+  - mv ./test/hieradata/override.yaml.disabled  ./test/hieradata/override.yaml
+  - puppet apply -v ./test/site.pp
+  - inspec exec ./test/inspec/sc_postgresql_override.rb
+  - mv ./test/hieradata/override.yaml  ./test/hieradata/override.yaml.disabled
 
 push2github:
   stage: push2github

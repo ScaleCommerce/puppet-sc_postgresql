@@ -1,7 +1,7 @@
 ---
 version: 5
 defaults:
-  datadir: "%{settings::confdir}/hieradata"
+  datadir: hieradata
   data_hash: yaml_data
 
 hierarchy:

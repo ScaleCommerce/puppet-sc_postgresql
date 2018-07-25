@@ -4,11 +4,9 @@ classes:
 
 postgresql::server::postgres_password: very_secret!!
 postgresql::server::listen_addresses: "*"
-postgresql::server::ip_mask_allow_all_users: "%{ipaddress}"
-postgresql::server::service:service_provider: supervisor
 
 sc_postgresql::databases:
   my_db:
     user: my_user
-    owner: my_owner
+    owner: my_user
     password: also_very_secret!!

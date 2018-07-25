@@ -1,9 +1,8 @@
-class sc_nginx::supervisor(
+class sc_postgresql::supervisor(
 ){
 
   include supervisord
   include postgresql::server
-  include postgresql::repo
 
   file { ['/etc/init/postgresql.conf', '/etc/init.d/postgresql']:
     ensure => absent,
@@ -11,15 +10,15 @@ class sc_nginx::supervisor(
   }
 
   supervisord::program { 'postgresql':
-    command     => "/usr/lib/postgresql/$postgresql::repo::version/bin/postgres -D /var/lib/postgresql/$postgresql::repo::version/main -c config_file=/etc/postgresql/$postgresql::repo::version/main/postgresql.conf",
+    command     => "/usr/lib/postgresql/9.5/bin/postgres -D /var/lib/postgresql/9.5/main -c config_file=/etc/postgresql/9.5/main/postgresql.conf",
     autostart   => true,
     autorestart => true,
+    user        => postgres,
     require     => Package['postgresql-server'],
     before      => Service['postgresqld'],
   }
 
-  # override default service provider
-  Service <| title == "postgresqld"|> {
+  Service <| title == "postgresqld" |> {
     provider => supervisor,
   }
 }
