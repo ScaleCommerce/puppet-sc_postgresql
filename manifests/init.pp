@@ -26,6 +26,9 @@ class sc_postgresql (
     class {'::sc_postgresql::supervisor':}
   }
 
+  # make sure package is installed from repo
+  Class['apt::update'] -> Package['postgresql-server']
+
   include postgresql::server
   include postgresql::repo
   include sc_bashprofile
