@@ -1,6 +1,6 @@
 {
   "name": "scalecommerce-sc_postgresql",
-  "version": "0.1",
+  "version": "0.1.1",
   "author": "Thomas Lohner, ScaleCommerce GmbH",
   "summary": "ScaleCommerce Wrapper Module for puppetlabs-postgresql. Manages Databases, Users, Roles.",
   "license": "Apache 2.0",
