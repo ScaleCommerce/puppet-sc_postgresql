@@ -17,5 +17,4 @@ git clone https://github.com/ScaleCommerce/puppet-supervisor_provider.git $(pupp
 git clone https://github.com/ScaleCommerce/puppet-sc_bashprofile.git $(puppet config print modulepath |cut -d: -f1)/sc_bashprofile
 ln -sf $(pwd) $(puppet config print modulepath |cut -d: -f1)/sc_postgresql
 
-wget -q https://packages.chef.io/files/stable/inspec/2.2.41/ubuntu/16.04/inspec_2.2.41-1_amd64.deb -O /inspec_2.2.41-1_amd64.deb
-dpkg -i /inspec_*
+curl -s https://omnitruck.chef.io/install.sh | bash -s -- -P inspec -v 3.9.3
