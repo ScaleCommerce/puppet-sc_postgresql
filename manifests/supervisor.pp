@@ -10,7 +10,7 @@ class sc_postgresql::supervisor(
   }
 
   supervisord::program { 'postgresql':
-    command     => "/usr/lib/postgresql/9.5/bin/postgres -D /var/lib/postgresql/9.5/main -c config_file=/etc/postgresql/9.5/main/postgresql.conf",
+    command     => "/usr/lib/postgresql/${postgresql::globals::version}/bin/postgres -D /var/lib/postgresql/${postgresql::globals::version}/main -c config_file=/etc/postgresql/${postgresql::globals::version}/main/postgresql.conf",
     autostart   => true,
     autorestart => true,
     user        => postgres,
