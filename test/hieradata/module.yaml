@@ -4,6 +4,7 @@ classes:
 
 postgresql::server::postgres_password: very_secret!!
 postgresql::server::listen_addresses: "*"
+postgresql::globals::version: '9.5'
 
 sc_postgresql::databases:
   my_db:
