@@ -4,9 +4,10 @@ stages:
   - push2github
 
 xenial:puppet5:
+  stage: Puppet 5
+  image: scalecommerce/xenial:1.11
   tags:
     - dind
-  stage: Puppet 5
   script:
     - ./test/install-puppet5.sh
     - ./test/install.sh
@@ -19,6 +20,7 @@ xenial:puppet5:
 
 xenial:puppet6:
   stage: Puppet 6
+  image: scalecommerce/xenial:1.11
   tags:
     - dind
   script:
@@ -33,6 +35,7 @@ xenial:puppet6:
 
 push2github:
   stage: push2github
+  image: scalecommerce/xenial:1.11
   tags:
     - dind
   script:
