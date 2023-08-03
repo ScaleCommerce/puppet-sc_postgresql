@@ -1,30 +1,14 @@
 stages:
-  - Puppet 5
-  - Puppet 6
+  - test
   - push2github
 
-xenial:puppet5:
-  stage: Puppet 5
-  image: scalecommerce/xenial:1.11
+focal:puppet7:
+  stage: test
+  image: scalecommerce/focal-supervisord:1.5
   tags:
     - dind
   script:
-    - ./test/install-puppet5.sh
-    - ./test/install.sh
-    - puppet apply -v ./test/site.pp
-    - inspec exec ./test/inspec/sc_postgresql.rb
-    - mv ./test/hieradata/override.yaml.disabled  ./test/hieradata/override.yaml
-    - puppet apply -v ./test/site.pp
-    - inspec exec ./test/inspec/sc_postgresql_override.rb
-    - mv ./test/hieradata/override.yaml  ./test/hieradata/override.yaml.disabled
-
-xenial:puppet6:
-  stage: Puppet 6
-  image: scalecommerce/xenial:1.11
-  tags:
-    - dind
-  script:
-    - ./test/install-puppet6.sh
+    - ./test/install-puppet7.sh
     - ./test/install.sh
     - puppet apply -v ./test/site.pp
     - inspec exec ./test/inspec/sc_postgresql.rb
@@ -35,8 +19,11 @@ xenial:puppet6:
 
 push2github:
   stage: push2github
-  image: scalecommerce/xenial:1.11
+  image: scalecommerce/focal-supervisord:1.5
   tags:
     - dind
   script:
-    - git push --quiet --mirror https://$GITHUB_TOKEN@github.com/ScaleCommerce/puppet-sc_postgresql.git
+    - git clone --mirror $CI_REPOSITORY_URL .git-mirror
+    - cd .git-mirror
+    - git remote set-url --push origin  https://$GITHUB_TOKEN@github.com/ScaleCommerce/$CI_PROJECT_NAME.git
+    - git push --quiet --mirror
